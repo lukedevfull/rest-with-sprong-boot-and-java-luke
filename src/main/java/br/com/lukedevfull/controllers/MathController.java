@@ -10,12 +10,25 @@ public class MathController {
     //TODO: Implementar métodos de matemática
     //localhost:8080/math/sum/x/y
     @RequestMapping("/sum/{numberOne}/{numberTwo}")
-    public Long sum(
+    public Double sum(
             @PathVariable("numberOne") String numberOne,
             @PathVariable("numberTwo") String numberTwo
-    ) {
-        return Long.parseLong(numberOne) + Long.parseLong(numberTwo);
+    ) throws Exception{
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
+            throw new Exception("Please set a numeric value");
+        }
+        return convertToDouble(numberOne) + convertToDouble(numberTwo);
     }
+
+    private Double convertToDouble(String number) {
+        return Double.parseDouble(number);
+    }
+
+    private boolean isNumeric(String numberOne) {
+        //TODO: Implementar método de validação de número
+        return true;
+    }
+
     //localhost:8080/math/subtract/x/y
     @RequestMapping("/sub/{numberOne}/{numberTwo}")
     public Long subtract(
