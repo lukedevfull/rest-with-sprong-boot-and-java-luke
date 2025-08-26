@@ -11,6 +11,13 @@ import java.util.concurrent.atomic.AtomicLong;
 public class GreetingController {
     private static final String template = "Hello, %s!";
     private static final AtomicLong idCounter = new AtomicLong();
+    /**
+     * Endpoint that returns a greeting message.
+     *
+     * @param name the name to include in the greeting message.
+     *             If not provided, defaults to "World".
+     * @return a {@link Greeting} object containing the greeting message.
+     */
     @RequestMapping("/greeting")
     public Greeting greeting(
             @RequestParam

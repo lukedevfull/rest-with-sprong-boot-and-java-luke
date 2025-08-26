@@ -21,15 +21,61 @@ public class MathController {
         return convertToDouble(numberOne) + convertToDouble(numberTwo);
     }
 
+    //localhost:8080/math/subtract/x/y
+    @RequestMapping("/sub/{numberOne}/{numberTwo}")
+    public Double subtract(
+            @PathVariable("numberOne") String numberOne,
+            @PathVariable("numberTwo") String numberTwo
+    ) throws Exception{
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
+            throw new InvalidNumericException("Por favor, informe um número válido");
+        }
+        return convertToDouble(numberOne) - convertToDouble(numberTwo);
+    }
+    //localhost:8080/math/multiply/x/y
+    @RequestMapping("/mult/{numberOne}/{numberTwo}")
+    public Double multiply(
+            @PathVariable("numberOne") String numberOne,
+            @PathVariable("numberTwo") String numberTwo
+    ) throws Exception{
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
+            throw new InvalidNumericException("Por favor, informe um número válido");
+        }
+        return convertToDouble(numberOne) * convertToDouble(numberTwo);
+    }
+    //localhost:8080/math/divide/x/y
+    @RequestMapping("/div/{numberOne}/{numberTwo}")
+    public Double divide(
+            @PathVariable("numberOne") String numberOne,
+            @PathVariable("numberTwo") String numberTwo
+    ) throws Exception{
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
+            throw new InvalidNumericException("Por favor, informe um número válido");
+        }
+        return convertToDouble(numberOne) / convertToDouble(numberTwo);
+    }
+
+    //localhost:8080/math/percentage/x/y
+    @RequestMapping("/percentage/{numberOne}/{numberTwo}")
+    public Double percentage(
+            @PathVariable("numberOne") String numberOne,
+            @PathVariable("numberTwo") String numberTwo
+    ) throws Exception{
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
+            throw new InvalidNumericException("Por favor, informe um número válido");
+        }
+        return (convertToDouble(numberOne) / convertToDouble(numberTwo)) * 100;
+    }
+
     private Double convertToDouble(String strNumber)
     {
         if (strNumber.isEmpty() || strNumber == null)
             throw new IllegalArgumentException
                     ("Não é possível converter uma string vazia ou nula para um número.");
-        
+
         String number = strNumber
                 .replaceAll(",", ".");
-        
+
         return Double.parseDouble(number);
     }
 
@@ -40,23 +86,4 @@ public class MathController {
         return number
                 .matches("[-+]?[0-9]*\\.?[0-9]+");
     }
-
-    //localhost:8080/math/subtract/x/y
-    @RequestMapping("/sub/{numberOne}/{numberTwo}")
-    public Double subtract(
-            @PathVariable("numberOne") String numberOne,
-            @PathVariable("numberTwo") String numberTwo
-    ) {
-        return convertToDouble(numberOne) - convertToDouble(numberTwo);
-    }
-    //localhost:8080/math/multiply/x/y
-    @RequestMapping("/mult/{numberOne}/{numberTwo}")
-    public Double multiply(
-            @PathVariable("numberOne") String numberOne,
-            @PathVariable("numberTwo") String numberTwo
-    ) {
-        return convertToDouble(numberOne) * convertToDouble(numberTwo);
-    }
-    //localhost:8080/math/divide/x/y
-    //localhost:8080/math/average/x/y
 }
