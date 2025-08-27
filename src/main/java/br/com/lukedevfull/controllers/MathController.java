@@ -85,5 +85,6 @@ public class MathController {
                 .replaceAll(",", ".");
         return number
                 .matches("[-+]?[0-9]*\\.?[0-9]+");
+        //test commit on ubuntu
     }
 }
