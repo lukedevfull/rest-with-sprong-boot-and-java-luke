@@ -1,6 +1,5 @@
 package br.com.lukedevfull.controllers;
 
-import br.com.lukedevfull.personalExeptions.InvalidNumericException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/math")
 public class MathController {
-    //TODO: Implementar métodos de matemática
+    //TODO: Implementar métodos de matemática: check
     //localhost:8080/math/sum/x/y
     @RequestMapping("/sum/{numberOne}/{numberTwo}")
     public Double sum(
@@ -16,7 +15,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo
     ) throws Exception{
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new InvalidNumericException("Por favor, informe um número válido");
+            throw new UnsupportedOperationException("Please enter a numeric value!");
         }
         return convertToDouble(numberOne) + convertToDouble(numberTwo);
     }
@@ -28,7 +27,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo
     ) throws Exception{
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new InvalidNumericException("Por favor, informe um número válido");
+            throw new UnsupportedOperationException("Please enter a numeric value!");
         }
         return convertToDouble(numberOne) - convertToDouble(numberTwo);
     }
@@ -39,7 +38,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo
     ) throws Exception{
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new InvalidNumericException("Por favor, informe um número válido");
+            throw new UnsupportedOperationException("Please enter a numeric value!");
         }
         return convertToDouble(numberOne) * convertToDouble(numberTwo);
     }
@@ -50,7 +49,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo
     ) throws Exception{
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new InvalidNumericException("Por favor, informe um número válido");
+            throw new UnsupportedOperationException("Please enter a numeric value!");
         }
         return convertToDouble(numberOne) / convertToDouble(numberTwo);
     }
@@ -62,7 +61,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo
     ) throws Exception{
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new InvalidNumericException("Por favor, informe um número válido");
+            throw new UnsupportedOperationException("Please enter a numeric value!");
         }
         return (convertToDouble(numberOne) / convertToDouble(numberTwo)) * 100;
     }
@@ -70,8 +69,7 @@ public class MathController {
     private Double convertToDouble(String strNumber)
     {
         if (strNumber.isEmpty() || strNumber == null)
-            throw new IllegalArgumentException
-                    ("Não é possível converter uma string vazia ou nula para um número.");
+            throw new UnsupportedOperationException("Please enter a numeric value!");
 
         String number = strNumber
                 .replaceAll(",", ".");
@@ -85,6 +83,6 @@ public class MathController {
                 .replaceAll(",", ".");
         return number
                 .matches("[-+]?[0-9]*\\.?[0-9]+");
-        //test commit on ubuntu
+
     }
 }
