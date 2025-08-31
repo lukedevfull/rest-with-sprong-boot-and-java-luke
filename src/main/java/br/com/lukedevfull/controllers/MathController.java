@@ -1,5 +1,6 @@
 package br.com.lukedevfull.controllers;
 
+import br.com.lukedevfull.exeptions.UnsupportedMathOperation;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +28,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo
     ) throws Exception{
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new UnsupportedOperationException("Please enter a numeric value!");
+            throw new UnsupportedMathOperation("Please enter a numeric value!");
         }
         return convertToDouble(numberOne) - convertToDouble(numberTwo);
     }
@@ -38,7 +39,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo
     ) throws Exception{
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new UnsupportedOperationException("Please enter a numeric value!");
+            throw new UnsupportedMathOperation("Please enter a numeric value!");
         }
         return convertToDouble(numberOne) * convertToDouble(numberTwo);
     }
@@ -49,7 +50,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo
     ) throws Exception{
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new UnsupportedOperationException("Please enter a numeric value!");
+            throw new UnsupportedMathOperation("Please enter a numeric value!");
         }
         return convertToDouble(numberOne) / convertToDouble(numberTwo);
     }
@@ -61,7 +62,7 @@ public class MathController {
             @PathVariable("numberTwo") String numberTwo
     ) throws Exception{
         if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new UnsupportedOperationException("Please enter a numeric value!");
+            throw new UnsupportedMathOperation("Please enter a numeric value!");
         }
         return (convertToDouble(numberOne) / convertToDouble(numberTwo)) * 100;
     }
@@ -69,7 +70,7 @@ public class MathController {
     private Double convertToDouble(String strNumber)
     {
         if (strNumber.isEmpty() || strNumber == null)
-            throw new UnsupportedOperationException("Please enter a numeric value!");
+            throw new UnsupportedMathOperation("Please enter a numeric value!");
 
         String number = strNumber
                 .replaceAll(",", ".");

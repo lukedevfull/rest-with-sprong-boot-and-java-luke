@@ -1,6 +1,7 @@
 package br.com.lukedevfull.exeptions.handler;
 
 import br.com.lukedevfull.exeptions.ResponseExeptions;
+import br.com.lukedevfull.exeptions.UnsupportedMathOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -23,7 +24,9 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
             request.getDescription(false));
     return
             new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-    }@ExceptionHandler(UnsupportedOperationException.class)
+    }
+
+    @ExceptionHandler(UnsupportedMathOperation.class)
     public final ResponseEntity<ResponseExeptions> handlerBadRequestExeptions(Exception ex, WebRequest request) {
     ResponseExeptions response = new ResponseExeptions(
             new Date(),
