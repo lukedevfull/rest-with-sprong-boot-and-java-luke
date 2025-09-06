@@ -1,6 +1,6 @@
 package br.com.lukedevfull.controllers;
 
-import br.com.lukedevfull.exeptions.UnsupportedMathOperation;
+import br.com.lukedevfull.logicalMethods.mathMethods.MathMethods;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,51 +8,45 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/math")
 public class MathController {
+    private MathMethods mathMethods;
+
+    public MathController(MathMethods mathMethods) {
+        this.mathMethods = mathMethods;
+    }
+
     //TODO: Implementar métodos de matemática: check
     //localhost:8080/math/sum/x/y
     @RequestMapping("/sum/{numberOne}/{numberTwo}")
     public Double sum(
             @PathVariable("numberOne") String numberOne,
             @PathVariable("numberTwo") String numberTwo
-    ) throws Exception{
-        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new UnsupportedOperationException("Please enter a numeric value!");
-        }
-        return convertToDouble(numberOne) + convertToDouble(numberTwo);
+    ) {
+        return this.mathMethods.sum(numberOne, numberTwo);
     }
 
-    //localhost:8080/math/subtract/x/y
+    //localhost:8080/math/sub/x/y
     @RequestMapping("/sub/{numberOne}/{numberTwo}")
     public Double subtract(
             @PathVariable("numberOne") String numberOne,
             @PathVariable("numberTwo") String numberTwo
-    ) throws Exception{
-        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new UnsupportedMathOperation("Please enter a numeric value!");
-        }
-        return convertToDouble(numberOne) - convertToDouble(numberTwo);
+    ) {
+        return this.mathMethods.subtract(numberOne, numberTwo);
     }
     //localhost:8080/math/multiply/x/y
     @RequestMapping("/mult/{numberOne}/{numberTwo}")
     public Double multiply(
             @PathVariable("numberOne") String numberOne,
             @PathVariable("numberTwo") String numberTwo
-    ) throws Exception{
-        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new UnsupportedMathOperation("Please enter a numeric value!");
-        }
-        return convertToDouble(numberOne) * convertToDouble(numberTwo);
+    ) {
+        return this.mathMethods.multiply(numberOne, numberTwo);
     }
     //localhost:8080/math/divide/x/y
     @RequestMapping("/div/{numberOne}/{numberTwo}")
     public Double divide(
             @PathVariable("numberOne") String numberOne,
             @PathVariable("numberTwo") String numberTwo
-    ) throws Exception{
-        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new UnsupportedMathOperation("Please enter a numeric value!");
-        }
-        return convertToDouble(numberOne) / convertToDouble(numberTwo);
+    ) {
+        return this.mathMethods.divide(numberOne, numberTwo);
     }
 
     //localhost:8080/math/percentage/x/y
@@ -60,30 +54,7 @@ public class MathController {
     public Double percentage(
             @PathVariable("numberOne") String numberOne,
             @PathVariable("numberTwo") String numberTwo
-    ) throws Exception{
-        if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
-            throw new UnsupportedMathOperation("Please enter a numeric value!");
-        }
-        return (convertToDouble(numberOne) / convertToDouble(numberTwo)) * 100;
-    }
-
-    private Double convertToDouble(String strNumber)
-    {
-        if (strNumber.isEmpty() || strNumber == null)
-            throw new UnsupportedMathOperation("Please enter a numeric value!");
-
-        String number = strNumber
-                .replaceAll(",", ".");
-
-        return Double.parseDouble(number);
-    }
-
-    private boolean isNumeric(String strNumber) {
-        if (strNumber.isEmpty() || strNumber == null) return true;
-        String number = strNumber
-                .replaceAll(",", ".");
-        return number
-                .matches("[-+]?[0-9]*\\.?[0-9]+");
-
+    ) {
+        return this.mathMethods.percentage(numberOne, numberTwo);
     }
 }
