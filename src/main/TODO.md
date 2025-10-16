@@ -2,6 +2,6 @@
 - IMPLEMENTAR METODOS DE MATEMATICA NA CLASSE MathController ✔
 - Tempo: 50 minutos
 ---
-- REFATORAR O CONTROLLER MathController, MELHORANDO A ARQUITETURA DO CODIGO : 
-- Tempo: in comming
+- REFATORAR O CONTROLLER MathController, MELHORANDO A ARQUITETURA DO CODIGO  ✔
+- Tempo: 60 minutos
 ---
