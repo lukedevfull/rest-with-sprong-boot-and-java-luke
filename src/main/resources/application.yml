@@ -11,10 +11,10 @@ spring:
     # URL de conexão com o banco de dados
     # useTimezone: ajusta o fuso horário do cliente
     # serverTimezone=UTC: define o fuso horário do servidor como UTC
-    url: jdbc:mysql://localhost:3306/rest_with_sprong_boot_luke?useTimezone=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/rest_with_spring_boot_luke?useTimezone=true&serverTimezone=UTC
     # Credenciais do banco de dados
     username: root
-    password: 314152
+    password: Akatsuki_314152
   
   # Configurações do JPA (Java Persistence API)
   jpa:
@@ -25,8 +25,8 @@ spring:
     # Configurações específicas do Hibernate
     properties:
       hibernate:
-        # Dialeto SQL específico para MySQL 8
-        # Otimiza as consultas para o MySQL 8
-        dialect: org.hibernate.dialect.MySQL8Dialect
+#        # Dialeto SQL específico para MySQL 8
+#        # Otimiza as consultas para o MySQL 8
+#        dialect: org.hibernate.dialect.MySQL8Dialect
     # Mostrar as consultas SQL no console (útil para depuração)
     show-sql: false
