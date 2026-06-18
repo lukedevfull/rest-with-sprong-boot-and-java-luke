@@ -1,14 +1,12 @@
 package br.com.lukedevfull.services;
 
 import br.com.lukedevfull.model.Person;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @Service
 public class PersonServices {
@@ -31,7 +29,7 @@ public class PersonServices {
     private Person mockPerson(int i){
         Person person = new Person();
         person.setId(counter.incrementAndGet());
-        person.setFirstname("FIRTSNAME " + i);
+        person.setFirstName("FIRTSNAME " + i);
         person.setLastName("LASTNAME " + i);
         person.setAddress("ADRESS " + i);
         person.setGender("GENDER " + i);
@@ -44,7 +42,7 @@ public class PersonServices {
         //      Data MOCK ---->
         Person person = new Person();
         person.setId(counter.incrementAndGet());
-        person.setFirstname("John");
+        person.setFirstName("John");
         person.setLastName("Doe");
         person.setAddress("123 Main St");
         person.setGender("Male");

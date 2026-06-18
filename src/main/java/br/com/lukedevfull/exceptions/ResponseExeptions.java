@@ -1,4 +1,4 @@
-package br.com.lukedevfull.exeptions;
+package br.com.lukedevfull.exceptions;
 
 import java.util.Date;
 
