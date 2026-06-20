@@ -16,7 +16,7 @@ import java.util.Date;
 public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<ResponseExeptions> handlerAllExeptions(Exception ex, WebRequest request) {
+    public final ResponseEntity<ResponseExeptions> handlerAllExceptions(Exception ex, WebRequest request) {
     ResponseExeptions response = new ResponseExeptions(
             new Date(),
             ex.getMessage(),
@@ -24,4 +24,15 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
     return
             new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+    @ExceptionHandler(Exception.class)
+    public final ResponseEntity<ResponseExeptions> ResourceNotFoundException(Exception ex, WebRequest request) {
+        ResponseExeptions response = new ResponseExeptions(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+        return
+                new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
 }
+
